@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+carrito_1:
+  user: User_1
+  producto: cafe_de_altura
+
+carrito_2:
+  user: User_1
+  producto: queso_maduro

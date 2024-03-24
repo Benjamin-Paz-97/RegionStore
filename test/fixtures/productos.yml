@@ -1,0 +1,295 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+cafe_de_altura:
+  titulo: Café de altura
+  description: Granos de café cultivados en las alturas de la sierra
+  price: 25
+  region: sierra
+
+queso_maduro:
+  titulo: Queso maduro
+  description: Queso artesanal madurado con hierbas de la región
+  price: 18
+  region: sierra
+
+miel_organica:
+  titulo: Miel orgánica
+  description: Miel pura recolectada de abejas en colmenas orgánicas
+  price: 12
+  region: selva
+
+chocolate_artesanal:
+  titulo: Chocolate artesanal
+  description: Deliciosas tabletas de chocolate elaboradas a mano
+  price: 10
+  region: costa
+
+aceite_de_oliva_virgen_extra:
+  titulo: Aceite de oliva virgen extra
+  description: Aceite de oliva premium prensado en frío
+  price: 20
+  region: costa
+
+vino_tinto_reserva:
+  titulo: Vino tinto reserva
+  description: Vino tinto de calidad premium con notas frutales
+  price: 30
+  region: costa
+
+mermelada_casera:
+  titulo: Mermelada casera
+  description: Mermelada artesanal con frutas frescas de la región
+  price: 8
+  region: selva
+
+salsa_picante:
+  titulo: Salsa picante
+  description: Salsa picante tradicional elaborada con chiles locales
+  price: 7
+  region: sierra
+
+frutos_secos:
+  titulo: Mezcla de frutos secos
+  description: Mezcla de nueces, almendras y castañas tostadas
+  price: 15
+  region: selva
+
+dulce_de_leche_casero:
+  titulo: Dulce de leche casero
+  description: Delicioso dulce de leche preparado de manera artesanal
+  price: 10
+  region: costa
+
+té_de_hierbas:
+  titulo: Té de hierbas
+  description: Infusión de hierbas aromáticas recolectadas en la sierra
+  price: 6
+  region: sierra
+
+almendras_chocolatadas:
+  titulo: Almendras chocolatadas
+  description: Almendras tostadas cubiertas de chocolate negro
+  price: 12
+  region: costa
+
+cacao_en_grano:
+  titulo: Cacao en grano
+  description: Granos de cacao frescos ideales para preparar chocolate casero
+  price: 15
+  region: selva
+
+vinagre_balsamico:
+  titulo: Vinagre balsámico
+  description: Vinagre de calidad premium envejecido en barricas de roble
+  price: 25
+  region: costa
+
+ají_molido:
+  titulo: Ají molido
+  description: Especia picante molida, perfecta para condimentar platos
+  price: 5
+  region: sierra
+
+pasta_de_aceitunas:
+  titulo: Pasta de aceitunas
+  description: Pasta de aceitunas negras para untar en pan o galletas
+  price: 8
+  region: costa
+
+jugo_natural_de_frutas:
+  titulo: Jugo natural de frutas
+  description: Delicioso jugo preparado con frutas frescas de la estación
+  price: 4
+  region: costa
+
+cerveza_artesanal:
+  titulo: Cerveza artesanal
+  description: Cerveza elaborada de manera artesanal con ingredientes locales
+  price: 7
+  region: sierra
+
+vino_blanco_seco:
+  titulo: Vino blanco seco
+  description: Vino blanco fresco y ligero, perfecto para mariscos
+  price: 22
+  region: costa
+
+barra_de_granola:
+  titulo: Barra de granola
+  description: Barra energética de granola con frutas secas y miel
+  price: 3
+  region: sierra
+
+café_con_especias:
+  titulo: Café con especias
+  description: Café gourmet con una mezcla de especias exóticas
+  price: 18
+  region: selva
+
+torta_de_chocolate:
+  titulo: Torta de chocolate
+  description: Deliciosa torta de chocolate elaborada de manera artesanal
+  price: 30
+  region: costa
+
+fruta_desecada:
+  titulo: Fruta desecada
+  description: Mezcla de frutas tropicales desecadas, ideal como snack saludable
+  price: 9
+  region: selva
+
+yogurt_casero:
+  titulo: Yogurt casero
+  description: Yogurt natural elaborado de manera artesanal
+  price: 6
+  region: sierra
+
+aji_amarillo_en_pasta:
+  titulo: Ají amarillo en pasta
+  description: Pasta de ají amarillo para preparar deliciosas salsas
+  price: 8
+  region: costa
+
+almibar_de_frutas:
+  titulo: Almíbar de frutas
+  description: Frutas en almíbar preparadas de manera artesanal
+  price: 10
+  region: sierra
+
+mantequilla_de_cacahuate:
+  titulo: Mantequilla de cacahuate
+  description: Mantequilla cremosa de cacahuate sin aditivos
+  price: 7
+  region: selva
+
+pesto_casero:
+  titulo: Pesto casero
+  description: Pesto fresco hecho con albahaca, piñones y aceite de oliva
+  price: 8
+  region: costa
+
+miel_de_abeja_organica:
+  titulo: Miel de abeja orgánica
+  description: Miel pura recolectada de colmenas orgánicas
+  price: 20
+  region: sierra
+
+conservas_caseras:
+  titulo: Conservas caseras
+  description: Deliciosas conservas de frutas tropicales
+  price: 12
+  region: costa
+
+vino_artesanal:
+  titulo: Vino artesanal
+  description: Vino tinto elaborado con uvas locales
+  price: 25
+  region: sierra
+
+aceitunas_gourmet:
+  titulo: Aceitunas gourmet
+  description: Aceitunas marinadas con hierbas aromáticas
+  price: 18
+  region: costa
+
+chocolate_con_especias:
+  titulo: Chocolate con especias
+  description: Tabletas de chocolate negro con una mezcla de especias exóticas
+  price: 15
+  region: selva
+
+cafe_especialidad:
+  titulo: Café de especialidad
+  description: Granos de café arábica de alta calidad
+  price: 30
+  region: sierra
+
+licores_artisanos:
+  titulo: Licores artesanos
+  description: Licores hechos a mano con frutas tropicales
+  price: 25
+  region: costa
+
+frutos_secos_premium:
+  titulo: Frutos secos premium
+  description: Mezcla de almendras, nueces y pistachos tostados
+  price: 20
+  region: sierra
+
+pan_artesanal:
+  titulo: Pan artesanal
+  description: Pan recién horneado con harina de la región
+  price: 8
+  region: costa
+
+salsa_picante_exotica:
+  titulo: Salsa picante exótica
+  description: Salsa picante elaborada con chiles autóctonos
+  price: 10
+  region: selva
+
+tarta_de_fresas:
+  titulo: Tarta de fresas
+  description: Deliciosa tarta casera con fresas frescas
+  price: 25
+  region: costa
+
+dulces_tradicionales:
+  titulo: Dulces tradicionales
+  description: Dulces típicos elaborados con ingredientes naturales
+  price: 12
+  region: sierra
+
+te_organico:
+  titulo: Té orgánico
+  description: Variedad de té cultivado de manera orgánica
+  price: 15
+  region: selva
+
+hierbas_aromaticas_frescas:
+  titulo: Hierbas aromáticas frescas
+  description: Mezcla de hierbas frescas para cocinar
+  price: 6
+  region: costa
+
+mermelada_de_mango:
+  titulo: Mermelada de mango
+  description: Mermelada casera con mango maduro
+  price: 10
+  region: sierra
+
+yogurt_artesanal:
+  titulo: Yogurt artesanal
+  description: Yogurt natural hecho con leche de vacas alimentadas con pasto
+  price: 8
+  region: costa
+
+helado_de_frutas_exoticas:
+  titulo: Helado de frutas exóticas
+  description: Helado artesanal con pulpa de frutas tropicales
+  price: 7
+  region: selva
+
+jugo_natural_de_naranja:
+  titulo: Jugo natural de naranja
+  description: Jugo recién exprimido de naranjas frescas
+  price: 5
+  region: costa
+
+granola_casera:
+  titulo: Granola casera
+  description: Mezcla de granola casera con frutos secos y miel
+  price: 10
+  region: sierra
+
+vinagre_balsamico_artesanal:
+  titulo: Vinagre balsámico artesanal
+  description: Vinagre envejecido con sabor agridulce
+  price: 15
+  region: costa
+
+paté_de_aceitunas:
+  titulo: Paté de aceitunas
+  description: Paté untuoso hecho con aceitunas negras y aceite de oliva
+  price: 12
+  region: sierra
