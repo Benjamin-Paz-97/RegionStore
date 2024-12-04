@@ -1,21 +1,25 @@
-# app/controllers/authentication/users_controller.rb
 class Authentication::UsersController < ApplicationController
   skip_before_action :protect_pages_admin
 
+  def new
+    @user = User.new
+  end
+
   def create
-    user_repository = Infrastructure::Repositories::ActiveRecordUserRepository.new
-    create_user = Domains::UseCases::CreateUser.new(user_repository)
+    user_repo = AdapterUserRepository.new
+    @user = User.new(user_params)
 
-    create_user.call(
-      email: params[:user][:email],
-      username: params[:user][:username],
-      password: params[:user][:password],
-      admin: params[:user][:admin]
-    )
+    if user_repo.save(@user) # Primero validamos y luego persistimos
+      session[:user_id] = @user.id
+      redirect_to productos_path, notice: "Registro exitoso"
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
 
-    session[:user_id] = User.find_by(email: params[:user][:email]).id
-    redirect_to productos_path, notice: "Registro exitoso"
-  rescue StandardError => e
-    redirect_to new_user_path, alert: "Error: #{e.message}"
+  private
+
+  def user_params
+    params.require(:user).permit(:email, :username, :password, :admin)
   end
 end

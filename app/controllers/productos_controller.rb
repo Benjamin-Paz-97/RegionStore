@@ -1,19 +1,15 @@
-# app/controllers/productos_controller.rb
 class ProductosController < ApplicationController
   skip_before_action :protect_pages_admin, only: [:index, :show]
-
   def index
-    producto_repository = Infrastructure::Repositories::ActiveRecordProductoRepository.new
-    list_productos = Domains::UseCases::ListProductos.new(producto_repository)
-
-    @pagy, @productos = pagy(
-      list_productos.call(
-        region_id: params[:region_id],
-        order_by: params[:order_by],
-        page: params[:page]
-      ), items: 10
-    )
+    @pagy, @productos = pagy(FindProductos.new.call(producto_prams_index), items: 10)
     @regions = Region.order(name: :asc)
+    if params[:region_id]
+      @productos = @productos.where(region_id: params[:region_id])
+    end
+
+    order_by = Producto::ORDER_BY.fetch(params[:order_by]&.to_sym,Producto::ORDER_BY[:newest])
+
+
   end
 
   def new
@@ -23,75 +19,77 @@ class ProductosController < ApplicationController
 
   def create
     authorize!
-    producto_repository = Infrastructure::Repositories::ActiveRecordProductoRepository.new
-    create_producto = Domains::UseCases::CreateProducto.new(producto_repository)
+    @producto = Producto.new(producto_params)
+    producto_repo = AdapterProductoRepository.new
 
-    begin
-      create_producto.call(producto_params.to_h)
-      redirect_to productos_path, notice: "El producto ha sido creado correctamente"
-    rescue StandardError => e
-      @producto = Producto.new(producto_params)
-      render :new, status: :unprocessable_entity, alert: e.message
+    if producto_repo.save(@producto)
+      redirect_to productos_path, notice: "Producto creado exitosamente."
+    else
+      render :new, status: :unprocessable_entity
     end
+
+
   end
 
   def show
-    producto_repository = Infrastructure::Repositories::ActiveRecordProductoRepository.new
-    show_producto = Domains::UseCases::ShowProducto.new(producto_repository)
-
-    @producto = show_producto.call(id: params[:id])
+    producto_repo = AdapterProductoRepository.new
+    producto_repo.Show_Producto(producto)
   end
 
   def edit
     authorize!
-    @producto = Producto.find(params[:id]) # Podrías usar un caso de uso para esto también
+    producto_repo = AdapterProductoRepository.new
+    producto_repo.edit(producto)
   end
 
   def update
-    producto_repository = Infrastructure::Repositories::ActiveRecordProductoRepository.new
-    update_producto = Domains::UseCases::UpdateProducto.new(producto_repository)
+    producto_repo = AdapterProductoRepository.new
+    @producto =  Producto.find(params[:id])
 
-    begin
-      update_producto.call(id: params[:id], **producto_params.to_h)
-      redirect_to producto_path(params[:id]), notice: "El producto ha sido actualizado correctamente"
-    rescue StandardError => e
-      @producto = Producto.find(params[:id])
-      render :edit, status: :unprocessable_entity, alert: e.message
+    if producto_repo.update(@producto.id, producto_params)
+      redirect_to producto_path(@producto), notice: "El producto ha sido actualizado correctamente."
+    else
+      @errors = @producto.errors.full_messages 
+      render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
-    authorize!
-    producto_repository = Infrastructure::Repositories::ActiveRecordProductoRepository.new
-    delete_producto = Domains::UseCases::DeleteProducto.new(producto_repository)
-
-    begin
-      delete_producto.call(id: params[:id])
+    producto_repo = AdapterProductoRepository.new
+    @producto = producto_repo.find(params[:id]) # Utiliza el repositorio para buscar el producto
+  
+    if @producto
+      Carrito.where(producto_id: @producto.id).destroy_all # Elimina los carritos relacionados
+      producto_repo.Eliminar(@producto)
       redirect_to productos_path, notice: "Producto eliminado con éxito", status: :see_other
-    rescue StandardError => e
-      redirect_to productos_path, alert: e.message
+    else
+      redirect_to productos_path, alert: "El producto no existe o no se pudo eliminar", status: :unprocessable_entity
     end
   end
+  
 
   def add_to_cart
     if current_user
-      cart_repository = Infrastructure::Repositories::ActiveRecordCartRepository.new
-      add_to_cart = Domains::UseCases::AddToCart.new(cart_repository)
-
-      begin
-        add_to_cart.call(user_id: current_user.id, producto_id: params[:id], quantity: 1)
-        redirect_to productos_path, notice: "Producto añadido al carrito"
-      rescue StandardError => e
-        redirect_to productos_path, alert: e.message
-      end
+      product = Producto.find(params[:id])
+      current_user.cart_items.create(producto: producto, quantity: 1)
+      redirect_to productos_path, notice: 'Producto añadido al carrito'
     else
-      redirect_to login_path, alert: "Debes iniciar sesión para añadir productos al carrito"
+      redirect_to login_path, alert: 'Debes iniciar sesión para añadir productos al carrito'
     end
   end
+
 
   private
 
   def producto_params
-    params.require(:producto).permit(:titulo, :description, :price, :photo, :region_id)
+    params.require(:producto).permit(:titulo, :description, :price, :photo,:region_id)
+  end
+
+  def producto_prams_index
+    params.permit( :region_id , :order_by, :page)
+  end
+
+  def producto
+    @producto =  Producto.find(params[:id])
   end
 end
